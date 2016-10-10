@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class URLModifier {
+	public static void main(String[] args) {
+		Scanner scan  = new Scanner(System.in);
+		String str = scan.nextLine();
+		System.out.println(str.length());
+		int trueLength = scan.nextInt();
+		
+		System.out.println(URLify(str.toCharArray(),trueLength).toString());
+		
+	}
+
+	private static String URLify(char[] arr,int trueLength) {
+		//count the number of spaces
+		int spaceCount = 0;
+		for(int i=0;i<trueLength;i++){
+			if(arr[i]==' '){
+				spaceCount++;
+			}
+		}
+		int index = trueLength+2*spaceCount-1;
+		for(int i = trueLength-1;i>=0 && index>=0;i--){
+			if(arr[i]==' '){
+				arr[index--]='0';arr[index--]='2';arr[index--]='%';
+			}
+			else{
+				arr[index--] = arr[i];
+			}
+			
+		}
+		return new String(arr);
+		// TODO Auto-generated method stub
+		
+	}
+}
